@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع القرآن الكريم والذكر - تصميم المصمم محمد سعيد ابراهيم فرج</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        islamic: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#15803d',
+                            700: '#166534',
+                            800: '#14532d',
+                            900: '#052e16',
+                            gold: '#b45309',
+                            goldLight: '#fbbf24'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        amiri: ['Amiri', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+        }
+        .quran-text {
+            font-family: 'Amiri', serif;
+            line-height: 2.5;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #15803d;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Header & Prominent Designer Branding -->
+    <header class="bg-islamic-900 text-white shadow-xl border-b-4 border-amber-500 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#166534_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+        <div class="container mx-auto px-4 py-6 relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-right">
+            <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-white shadow-xl text-3xl font-bold border-2 border-amber-200">
+                    <i class="fa-solid fa-quran"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-black text-amber-300">موقع القرآن الكريم والذكر الحكيم</h1>
+                    <p class="text-xs md:text-sm text-emerald-100 mt-1">صدقة جارية عن روح المسلمين والمسلمات</p>
+                </div>
+            </div>
+
+            <!-- Designer Branding Box -->
+            <div class="bg-gradient-to-r from-amber-700 to-amber-600 px-6 py-3 rounded-2xl border-2 border-amber-300 shadow-2xl text-center transform hover:scale-105 transition">
+                <span class="text-[11px] text-amber-200 uppercase tracking-wider block font-semibold">تصميم وبرمجة وتطوير</span>
+                <span class="text-lg md:text-xl font-black text-white tracking-wide">المصمم محمد سعيد ابراهيم فرج</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-40 border-b border-slate-200">
+        <div class="container mx-auto px-4 flex justify-center overflow-x-auto py-2 gap-2">
+            <button onclick="switchTab('quran')" id="btn-quran" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm md:text-base transition flex items-center gap-2 bg-islamic-600 text-white shadow">
+                <i class="fa-solid fa-book-open"></i> قراءة القرآن
+            </button>
+            <button onclick="switchTab('audio')" id="btn-audio" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm md:text-base transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-headphones"></i> الاستماع للشيوخ
+            </button>
+            <button onclick="switchTab('tasbih')" id="btn-tasbih" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm md:text-base transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-circle-dot"></i> المسبحة الإلكترونية
+            </button>
+            <button onclick="switchTab('azkar')" id="btn-azkar" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm md:text-base transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-hands-praying"></i> الأذكار حصن المسلم
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Dynamic Content -->
+    <main class="container mx-auto px-4 py-6 flex-grow max-w-5xl">
+
+        <!-- 1. QURAN READING TAB -->
+        <section id="tab-quran" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-book-quran text-islamic-600"></i> فهرس سور القرآن الكريم
+                    </h2>
+                    <p class="text-xs md:text-sm text-slate-500 mt-1">اختر السورة وابدأ القراءة بوضوح مع إمكانية تكبير وتصغير الخط</p>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <div class="relative flex-grow md:w-60">
+                        <input type="text" id="surah-search" placeholder="ابحث عن سورة..." oninput="filterSurahsList()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-islamic-600">
+                        <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400"></i>
+                    </div>
+                    <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+                        <button onclick="changeFontSize(-2)" class="w-8 h-8 rounded-lg bg-white shadow-sm font-bold text-slate-700">-</button>
+                        <span id="font-size-val" class="text-xs font-semibold px-2">26px</span>
+                        <button onclick="changeFontSize(2)" class="w-8 h-8 rounded-lg bg-white shadow-sm font-bold text-slate-700">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Surahs Grid -->
+            <div id="surahs-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Populated via JS -->
+            </div>
+
+            <!-- Reader View (Hidden by default) -->
+            <div id="surah-reader-view" class="hidden bg-white rounded-2xl p-6 md:p-10 shadow-lg border border-emerald-100 space-y-6">
+                <div class="flex items-center justify-between border-b pb-4">
+                    <button onclick="closeReader()" class="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-right"></i> العودة لقائمة السور
+                    </button>
+                    <div class="text-center">
+                        <h3 id="reader-title" class="text-2xl font-black font-amiri text-islamic-900">سورة الفاتحة</h3>
+                        <span id="reader-meta" class="text-xs text-slate-500">مكية - 7 آيات</span>
+                    </div>
+                    <div class="w-24"></div>
+                </div>
+
+                <div class="text-center py-3 bg-emerald-50/40 rounded-xl border border-emerald-100 text-islamic-800 font-amiri text-2xl" id="basmala-box">
+                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                </div>
+
+                <div id="verses-container" class="quran-text text-justify text-slate-900 space-y-4 px-2" style="font-size: 26px;">
+                    <!-- Verses loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. AUDIO RECITATION TAB -->
+        <section id="tab-audio" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2 mb-1">
+                    <i class="fa-solid fa-headphones-simple text-islamic-600"></i> الاستماع للقرآن الكريم بأصوات كبار الشيوخ
+                </h2>
+                <p class="text-sm text-slate-500">استمع لتلاوات خاشعة للشيخ ياسر الدوسري ونخبة من مشاهير القراء</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">اختر القارئ:</label>
+                        <select id="sheikh-select" onchange="initAudioPlayer()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-semibold focus:outline-none focus:border-islamic-600">
+                            <option value="yasser">الشيخ ياسر الدوسري</option>
+                            <option value="maher">الشيخ ماهر المعيقلي</option>
+                            <option value="sudais">الشيخ عبد الرحمن السديس</option>
+                            <option value="afs">الشيخ مشاري راشد العفاسي</option>
+                            <option value="ajamy">الشيخ أحمد العجمي</option>
+                            <option value="basit">الشيخ عبد الباسط عبد الصمد</option>
+                            <option value="minshawi">الشيخ محمد صديق المنشاوي</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">اختر السورة:</label>
+                        <select id="audio-surah-select" onchange="initAudioPlayer()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-semibold focus:outline-none focus:border-islamic-600">
+                            <!-- Populated via JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Audio Controller Box -->
+                <div class="mt-8 bg-gradient-to-br from-islamic-900 to-islamic-800 text-white p-6 rounded-2xl shadow-xl flex flex-col gap-5">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-right">
+                        <div>
+                            <span id="player-surah-name" class="text-lg font-bold block text-amber-300">سورة الفاتحة</span>
+                            <span id="player-sheikh-name" class="text-xs text-emerald-200">الشيخ ياسر الدوسري</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <button onclick="skipAudio(-10)" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="ترجيع 10 ثواني">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                            <button onclick="togglePlay()" id="play-btn" class="w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 text-white flex items-center justify-center text-xl shadow-lg hover:scale-105 transition">
+                                <i class="fa-solid fa-play" id="play-icon"></i>
+                            </button>
+                            <button onclick="skipAudio(10)" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="تقديم 10 ثواني">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <input type="range" id="audio-progress" value="0" max="100" step="0.1" oninput="seekAudio(this.value)" class="w-full accent-amber-400 cursor-pointer">
+                        <div class="flex justify-between text-xs text-emerald-200">
+                            <span id="curr-time">00:00</span>
+                            <span id="total-time">00:00</span>
+                        </div>
+                    </div>
+
+                    <audio id="main-audio" preload="none" ontimeupdate="updateAudioProgress()" onended="playNextAudioSurah()"></audio>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TASBIH TAB -->
+        <section id="tab-tasbih" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 max-w-xl mx-auto text-center space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">المسبحة الإلكترونية المباركة</h2>
+                    <p class="text-sm text-slate-500 mt-1">"ألا بذكر الله تطمئن القلوب"</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button onclick="setTasbih('سُبْحَانَ اللَّهِ', 33)" class="tasbih-btn bg-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-sm">سُبْحَانَ اللَّهِ (33)</button>
+                    <button onclick="setTasbih('الْحَمْدُ لِلَّهِ', 33)" class="tasbih-btn bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-50">الْحَمْدُ لِلَّهِ (33)</button>
+                    <button onclick="setTasbih('اللَّهُ أَكْبَرُ', 33)" class="tasbih-btn bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-50">اللَّهُ أَكْبَرُ (33)</button>
+                    <button onclick="setTasbih('لَا إِلَهَ إِلَّا اللَّهُ', 100)" class="tasbih-btn bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-50">لَا إِلَهَ إِلَّا اللَّهُ (100)</button>
+                    <button onclick="setTasbih('أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ', 100)" class="tasbih-btn bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-50">استغفار (100)</button>
+                </div>
+
+                <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-4">
+                    <span id="tasbih-current-text" class="text-2xl font-bold text-islamic-900 font-amiri">سُبْحَانَ اللَّهِ</span>
+                </div>
+
+                <div class="py-4 flex justify-center">
+                    <button onclick="incrementTasbih()" class="w-52 h-52 rounded-full bg-gradient-to-tr from-amber-600 to-amber-500 text-white shadow-2xl flex flex-col items-center justify-center border-4 border-white transform active:scale-95 transition focus:outline-none">
+                        <span id="tasbih-counter" class="text-6xl font-black">0</span>
+                        <span class="text-xs text-amber-100 mt-1 uppercase tracking-widest font-semibold">اضغط للتسبيح</span>
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between pt-4 border-t">
+                    <div>
+                        <span class="text-xs text-slate-400 block">إجمالي التسبيح:</span>
+                        <span id="tasbih-total" class="text-lg font-bold text-slate-700">0</span>
+                    </div>
+                    <button onclick="resetTasbih()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 border border-rose-200">
+                        <i class="fa-solid fa-rotate-right"></i> تصفير العدد
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. AZKAR TAB -->
+        <section id="tab-azkar" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-hands-praying text-islamic-600"></i> حصن المسلم - الأذكار اليومية
+                </h2>
+
+                <div class="flex flex-wrap gap-2 mb-6 border-b pb-4">
+                    <button onclick="loadAzkar('morning')" id="azkar-btn-morning" class="azkar-cat px-4 py-2 rounded-xl text-sm font-bold bg-islamic-600 text-white transition">أذكار الصباح</button>
+                    <button onclick="loadAzkar('evening')" id="azkar-btn-evening" class="azkar-cat px-4 py-2 rounded-xl text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">أذكار المساء</button>
+                    <button onclick="loadAzkar('sleep')" id="azkar-btn-sleep" class="azkar-cat px-4 py-2 rounded-xl text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">أذكار النوم</button>
+                    <button onclick="loadAzkar('prajers')" id="azkar-btn-prajers" class="azkar-cat px-4 py-2 rounded-xl text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">أدعية قرآنية</button>
+                </div>
+
+                <div id="azkar-container" class="space-y-4">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer with Designer Branding -->
+    <footer class="bg-slate-900 text-white mt-12 py-8 border-t border-slate-800 text-center">
+        <div class="container mx-auto px-4 max-w-4xl space-y-4">
+            <div class="flex items-center justify-center gap-2 text-amber-400">
+                <i class="fa-solid fa-star-and-crescent text-xl"></i>
+                <span class="font-bold text-lg">موقع القرآن الكريم والذكر</span>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md mx-auto">عمل خالص لوجه الله تعالى، صدقة جارية عن روح المسلمين والمسلمات.</p>
+            <div class="inline-block bg-slate-800 px-6 py-3 rounded-2xl border border-slate-700 shadow-inner">
+                <span class="text-amber-400 text-xs block font-semibold mb-1">تصميم وتنفيذ وبرمجة</span>
+                <span class="text-lg font-black tracking-wider text-emerald-400">المصمم محمد سعيد ابراهيم فرج</span>
+            </div>
+            <div class="text-xs text-slate-500 pt-4 border-t border-slate-800">
+                جميع الحقوق محفوظة لكل مسلم يبحث عن الأجر والثواب ❤️
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script>
+        // Complete Surahs Data (114 Surahs)
+        const surahsList = [
+            {number: 1, name: "سورة الفاتحة", eng: "Al-Fatihah", ayat: 7, type: "مكية"},
+            {number: 2, name: "سورة البقرة", eng: "Al-Baqarah", ayat: 286, type: "مدنية"},
+            {number: 3, name: "سورة آل عمران", eng: "Aal-E-Imran", ayat: 200, type: "مدنية"},
+            {number: 4, name: "سورة النساء", eng: "An-Nisa'", ayat: 176, type: "مدنية"},
+            {number: 5, name: "سورة المائدة", eng: "Al-Ma'idah", ayat: 120, type: "مدنية"},
+            {number: 6, name: "سورة الأنعام", eng: "Al-An'am", ayat: 165, type: "مكية"},
+            {number: 7, name: "سورة الأعراف", eng: "Al-A'raf", ayat: 206, type: "مكية"},
+            {number: 8, name: "سورة الأنفال", eng: "Al-Anfal", ayat: 75, type: "مدنية"},
+            {number: 9, name: "سورة التوبة", eng: "At-Tawbah", ayat: 129, type: "مدنية"},
+            {number: 10, name: "سورة يونس", eng: "Yunus", ayat: 109, type: "مكية"},
+            {number: 11, name: "سورة هود", eng: "Hud", ayat: 123, type: "مكية"},
+            {number: 12, name: "سورة يوسف", eng: "Yusuf", ayat: 111, type: "مكية"},
+            {number: 13, name: "سورة الرعد", eng: "Ar-Ra'd", ayat: 43, type: "مدنية"},
+            {number: 14, name: "سورة إبراهيم", eng: "Ibrahim", ayat: 52, type: "مكية"},
+            {number: 15, name: "سورة الحجر", eng: "Al-Hijr", ayat: 99, type: "مكية"},
+            {number: 16, name: "سورة النحل", eng: "An-Nahl", ayat: 128, type: "مكية"},
+            {number: 17, name: "سورة الإسراء", eng: "Al-Isra'", ayat: 111, type: "مكية"},
+            {number: 18, name: "سورة الكهف", eng: "Al-Kahf", ayat: 110, type: "مكية"},
+            {number: 19, name: "سورة مريم", eng: "Maryam", ayat: 98, type: "مكية"},
+            {number: 20, name: "سورة طه", eng: "Ta-Ha", ayat: 135, type: "مكية"},
+            {number: 21, name: "سورة الأنبياء", eng: "Al-Anbiya'", ayat: 112, type: "مكية"},
+            {number: 22, name: "سورة الحج", eng: "Al-Hajj", ayat: 78, type: "مدنية"},
+            {number: 23, name: "سورة المؤمنون", eng: "Al-Mu'minun", ayat: 118, type: "مكية"},
+            {number: 24, name: "سورة النور", eng: "An-Nur", ayat: 64, type: "مدنية"},
+            {number: 25, name: "سورة الفرقان", eng: "Al-Furqan", ayat: 77, type: "مكية"},
+            {number: 26, name: "سورة الشعراء", eng: "Ash-Shu'ara'", ayat: 227, type: "مكية"},
+            {number: 27, name: "سورة النمل", eng: "An-Naml", ayat: 93, type: "مكية"},
+            {number: 28, name: "سورة القصص", eng: "Al-Qasas", ayat: 88, type: "مكية"},
+            {number: 29, name: "سورة العنكبوت", eng: "Al-Ankabut", ayat: 69, type: "مكية"},
+            {number: 30, name: "سورة الروم", eng: "Ar-Rum", ayat: 60, type: "مكية"},
+            {number: 31, name: "سورة لقمان", eng: "Luqman", ayat: 34, type: "مكية"},
+            {number: 32, name: "سورة السجدة", eng: "As-Sajdah", ayat: 30, type: "مكية"},
+            {number: 33, name: "سورة الأحزاب", eng: "Al-Ahzab", ayat: 73, type: "مدنية"},
+            {number: 34, name: "سورة سبأ", eng: "Saba'", ayat: 54, type: "مكية"},
+            {number: 35, name: "سورة فاطر", eng: "Fatir", ayat: 45, type: "مكية"},
+            {number: 36, name: "سورة يس", eng: "Ya-Sin", ayat: 83, type: "مكية"},
+            {number: 37, name: "سورة الصافات", eng: "As-Saaffat", ayat: 182, type: "مكية"},
+            {number: 38, name: "سورة ص", eng: "Sad", ayat: 88, type: "مكية"},
+            {number: 39, name: "سورة الزمر", eng: "Az-Zumar", ayat: 75, type: "مكية"},
+            {number: 40, name: "سورة غافر", eng: "Ghafir", ayat: 85, type: "مكية"},
+            {number: 41, name: "سورة فصلت", eng: "Fussilat", ayat: 54, type: "مكية"},
+            {number: 42, name: "سورة الشورى", eng: "Ash-Shuraa", ayat: 53, type: "مكية"},
+            {number: 43, name: "سورة الزخرف", eng: "Az-Zukhruf", ayat: 89, type: "مكية"},
+            {number: 44, name: "سورة الدخان", eng: "Ad-Dukhan", ayat: 59, type: "مكية"},
+            {number: 45, name: "سورة الجاثية", eng: "Al-Jathiyah", ayat: 37, type: "مكية"},
+            {number: 46, name: "سورة الأحقاف", eng: "Al-Ahqaf", ayat: 35, type: "مكية"},
+            {number: 47, name: "سورة محمد", eng: "Muhammad", ayat: 38, type: "مدنية"},
+            {number: 48, name: "سورة الفتح", eng: "Al-Fath", ayat: 29, type: "مدنية"},
+            {number: 49, name: "سورة الحجرات", eng: "Al-Hujurat", ayat: 18, type: "مدنية"},
+            {number: 50, name: "سورة ق", eng: "Qaf", ayat: 45, type: "مكية"},
+            {number: 51, name: "سورة الذاريات", eng: "Adh-Dhariyat", ayat: 60, type: "مكية"},
+            {number: 52, name: "سورة الطور", eng: "At-Tur", ayat: 49, type: "مكية"},
+            {number: 53, name: "سورة النجم", eng: "An-Najm", ayat: 62, type: "مكية"},
+            {number: 54, name: "سورة القمر", eng: "Al-Qamar", ayat: 55, type: "مكية"},
+            {number: 55, name: "سورة الرحمن", eng: "Ar-Rahman", ayat: 78, type: "مدنية"},
+            {number: 56, name: "سورة الواقعة", eng: "Al-Waqi'ah", ayat: 96, type: "مكية"},
+            {number: 57, name: "سورة الحديد", eng: "Al-Hadid", ayat: 29, type: "مدنية"},
+            {number: 58, name: "سورة المجادلة", eng: "Al-Mujadila", ayat: 22, type: "مدنية"},
+            {number: 59, name: "سورة الحشر", eng: "Al-Hashr", ayat: 24, type: "مدنية"},
+            {number: 60, name: "سورة الممتحنة", eng: "Al-Mumtahanah", ayat: 13, type: "مدنية"},
+            {number: 61, name: "سورة الصف", eng: "As-Saf", ayat: 14, type: "مدنية"},
+            {number: 62, name: "سورة الجمعة", eng: "Al-Jumu'ah", ayat: 11, type: "مدنية"},
+            {number: 63, name: "سورة المنافقون", eng: "Al-Munafiqun", ayat: 11, type: "مدنية"},
+            {number: 64, name: "سورة التغابن", eng: "At-Taghabun", ayat: 18, type: "مدنية"},
+            {number: 65, name: "سورة الطلاق", eng: "At-Talaq", ayat: 12, type: "مدنية"},
+            {number: 66, name: "سورة التحريم", eng: "At-Tahrim", ayat: 12, type: "مدنية"},
+            {number: 67, name: "سورة الملك", eng: "Al-Mulk", ayat: 30, type: "مكية"},
+            {number: 68, name: "سورة القلم", eng: "Al-Qalam", ayat: 52, type: "مكية"},
+            {number: 69, name: "سورة الحاقة", eng: "Al-Haqqah", ayat: 52, type: "مكية"},
+            {number: 70, name: "سورة المعارج", eng: "Al-Ma'arij", ayat: 44, type: "مكية"},
+            {number: 71, name: "سورة نوح", eng: "Nuh", ayat: 28, type: "مكية"},
+            {number: 72, name: "سورة الجن", eng: "Al-Jinn", ayat: 28, type: "مكية"},
+            {number: 73, name: "سورة المزمل", eng: "Al-Muzzammil", ayat: 20, type: "مكية"},
+            {number: 74, name: "سورة المدثر", eng: "Al-Muddaththir", ayat: 56, type: "مكية"},
+            {number: 75, name: "سورة القيامة", eng: "Al-Qiyamah", ayat: 40, type: "مكية"},
+            {number: 76, name: "سورة الإنسان", eng: "Al-Insan", ayat: 31, type: "مدنية"},
+            {number: 77, name: "سورة المرسلات", eng: "Al-Mursalat", ayat: 50, type: "مكية"},
+            {number: 78, name: "سورة النبأ", eng: "An-Naba'", ayat: 40, type: "مكية"},
+            {number: 79, name: "سورة النازعات", eng: "An-Nazi'at", ayat: 46, type: "مكية"},
+            {number: 80, name: "سورة عبس", eng: "'Abasa", ayat: 42, type: "مكية"},
+            {number: 81, name: "سورة التكوير", eng: "At-Takwir", ayat: 29, type: "مكية"},
+            {number: 82, name: "سورة الانفطار", eng: "Al-Infitar", ayat: 19, type: "مكية"},
+            {number: 83, name: "سورة المطففين", eng: "Al-Mutaffifin", ayat: 36, type: "مكية"},
+            {number: 84, name: "سورة الانشقاق", eng: "Al-Inshiqaq", ayat: 25, type: "مكية"},
+            {number: 85, name: "سورة البروج", eng: "Al-Buruj", ayat: 22, type: "مكية"},
+            {number: 86, name: "سورة الطارق", eng: "At-Tariq", ayat: 17, type: "مكية"},
+            {number: 87, name: "سورة الأعلى", eng: "Al-A'la", ayat: 19, type: "مكية"},
+            {number: 88, name: "سورة الغاشية", eng: "Al-Ghashiyah", ayat: 26, type: "مكية"},
+            {number: 89, name: "سورة الفجر", eng: "Al-Fajr", ayat: 30, type: "مكية"},
+            {number: 90, name: "سورة البلد", eng: "Al-Balad", ayat: 20, type: "مكية"},
+            {number: 91, name: "سورة الشمس", eng: "Ash-Shams", ayat: 15, type: "مكية"},
+            {number: 92, name: "سورة الليل", eng: "Al-Lail", ayat: 21, type: "مكية"},
+            {number: 93, name: "سورة الضحى", eng: "Ad-Duha", ayat: 11, type: "مكية"},
+            {number: 94, name: "سورة الشرح", eng: "Ash-Sharh", ayat: 8, type: "مكية"},
+            {number: 95, name: "سورة التين", eng: "At-Tin", ayat: 8, type: "مكية"},
+            {number: 96, name: "سورة العلق", eng: "Al-'Alaq", ayat: 19, type: "مكية"},
+            {number: 97, name: "سورة القدر", eng: "Al-Qadr", ayat: 5, type: "مكية"},
+            {number: 98, name: "سورة البينة", eng: "Al-Bayyinah", ayat: 8, type: "مدنية"},
+            {number: 99, name: "سورة الزلزلة", eng: "Az-Zalzalah", ayat: 8, type: "مدنية"},
+            {number: 100, name: "سورة العاديات", eng: "Al-'Adiyat", ayat: 11, type: "مكية"},
+            {number: 101, name: "سورة القارعة", eng: "Al-Qari'ah", ayat: 11, type: "مكية"},
+            {number: 102, name: "سورة التكاثر", eng: "At-Takathur", ayat: 8, type: "مكية"},
+            {number: 103, name: "سورة العصر", eng: "Al-'Asr", ayat: 3, type: "مكية"},
+            {number: 104, name: "سورة الهمزة", eng: "Al-Humazah", ayat: 9, type: "مكية"},
+            {number: 105, name: "سورة الفيل", eng: "Al-Fil", ayat: 5, type: "مكية"},
+            {number: 106, name: "سورة قريش", eng: "Quraysh", ayat: 4, type: "مكية"},
+            {number: 107, name: "سورة الماعون", eng: "Al-Ma'un", ayat: 7, type: "مكية"},
+            {number: 108, name: "سورة الكوثر", eng: "Al-Kawthar", ayat: 3, type: "مكية"},
+            {number: 109, name: "سورة الكافرون", eng: "Al-Kafirun", ayat: 6, type: "مكية"},
+            {number: 110, name: "سورة النصر", eng: "An-Nasr", ayat: 3, type: "مدنية"},
+            {number: 111, name: "سورة المسد", eng: "Al-Masad", ayat: 5, type: "مكية"},
+            {number: 112, name: "سورة الإخلاص", eng: "Al-Ikhlas", ayat: 4, type: "مكية"},
+            {number: 113, name: "سورة الفلق", eng: "Al-Falaq", ayat: 5, type: "مكية"},
+            {number: 114, name: "سورة الناس", eng: "An-Nas", ayat: 6, type: "مكية"}
+        ];
+
+        let currentFontSize = 26;
+
+        window.onload = function() {
+            renderSurahsList();
+            populateAudioSelects();
+            loadAzkar('morning');
+        };
+
+        // Tab Management
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-islamic-600', 'text-white', 'shadow');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const active = document.getElementById(`btn-${tabId}`);
+            active.classList.remove('bg-slate-100', 'text-slate-600');
+            active.classList.add('bg-islamic-600', 'text-white', 'shadow');
+        }
+
+        // 1. Quran Reading Logic
+        function renderSurahsList(filter = '') {
+            const grid = document.getElementById('surahs-grid');
+            grid.innerHTML = '';
+            const filtered = surahsList.filter(s => s.name.includes(filter) || s.eng.toLowerCase().includes(filter.toLowerCase()));
+            
+            filtered.forEach(s => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:border-islamic-600 hover:shadow-md transition cursor-pointer flex items-center justify-between";
+                card.onclick = () => openSurahReader(s.number);
+                card.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-islamic-700 font-bold flex items-center justify-center text-sm border border-emerald-100">${s.number}</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">${s.name}</h4>
+                            <span class="text-xs text-slate-400">${s.eng}</span>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md font-semibold block mb-1">${s.type}</span>
+                        <span class="text-xs text-slate-400">${s.ayat} آيات</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterSurahsList() {
+            const query = document.getElementById('surah-search').value;
+            renderSurahsList(query);
+        }
+
+        function changeFontSize(delta) {
+            currentFontSize = Math.max(18, Math.min(38, currentFontSize + delta));
+            document.getElementById('font-size-val').innerText = currentFontSize + 'px';
+            const container = document.getElementById('verses-container');
+            if(container) container.style.fontSize = currentFontSize + 'px';
+        }
+
+        async function openSurahReader(num) {
+            const surah = surahsList.find(s => s.number === num);
+            document.getElementById('reader-title').innerText = surah.name;
+            document.getElementById('reader-meta').innerText = `${surah.type} - ${surah.ayat} آيات`;
+            document.getElementById('basmala-box').style.display = (num === 1 || num === 9) ? 'none' : 'block';
+
+            document.getElementById('surahs-grid').parentElement.classList.add('hidden');
+            document.getElementById('surah-reader-view').classList.remove('hidden');
+
+            const container = document.getElementById('verses-container');
+            container.innerHTML = '<div class="text-center py-12 text-slate-400"><i class="fa-solid fa-spinner fa-spin text-3xl text-islamic-600 mb-2"></i><p>جاري تحميل الآيات...</p></div>';
+
+            try {
+                const res = await fetch(`https://api.alquran.cloud/v1/surah/${num}`);
+                const data = await res.json();
+                if(data.code === 200) {
+                    container.innerHTML = '';
+                    data.data.ayahs.forEach(ayah => {
+                        let text = ayah.text;
+                        if(num !== 1 && num !== 9 && ayah.numberInSurah === 1 && text.startsWith('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')) {
+                            text = text.replace('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', '').trim();
+                        }
+                        const span = document.createElement('span');
+                        span.className = "inline hover:bg-emerald-50 transition rounded px-1";
+                        span.innerHTML = `${text} <span class="text-islamic-600 text-sm font-sans font-bold border border-emerald-200 rounded-full w-6 h-6 inline-flex items-center justify-center mx-1">﴿${ayah.numberInSurah}﴾</span>`;
+                        container.appendChild(span);
+                    });
+                }
+            } catch(e) {
+                container.innerHTML = '<p class="text-center text-rose-500 py-6">تعذر تحميل الآيات، تحقق من اتصال الإنترنت.</p>';
+            }
+        }
+
+        function closeReader() {
+            document.getElementById('surah-reader-view').classList.add('hidden');
+            document.getElementById('surahs-grid').parentElement.classList.remove('hidden');
+        }
+
+        // 2. Audio Player Logic
+        function populateAudioSelects() {
+            const select = document.getElementById('audio-surah-select');
+            select.innerHTML = '';
+            surahsList.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.number;
+                opt.textContent = `${s.number}. ${s.name}`;
+                select.appendChild(opt);
+            });
+            initAudioPlayer();
+        }
+
+        function initAudioPlayer() {
+            const sheikh = document.getElementById('sheikh-select').value;
+            const surahNum = String(document.getElementById('audio-surah-select').value).padStart(3, '0');
+            const sheikhText = document.getElementById('sheikh-select').selectedOptions[0].text;
+            const surahText = document.getElementById('audio-surah-select').selectedOptions[0].text;
+
+            document.getElementById('player-sheikh-name').innerText = sheikhText;
+            document.getElementById('player-surah-name').innerText = surahText;
+
+            let url = "";
+            if(sheikh === 'yasser') url = `https://server11.mp3quran.net/yasser/${surahNum}.mp3`;
+            else if(sheikh === 'maher') url = `https://server12.mp3quran.net/maher/${surahNum}.mp3`;
+            else if(sheikh === 'sudais') url = `https://server11.mp3quran.net/sds/${surahNum}.mp3`;
+            else if(sheikh === 'afs') url = `https://server8.mp3quran.net/afs/${surahNum}.mp3`;
+            else if(sheikh === 'ajamy') url = `https://server10.mp3quran.net/ajm/${surahNum}.mp3`;
+            else if(sheikh === 'basit') url = `https://server7.mp3quran.net/basit/${surahNum}.mp3`;
+            else url = `https://server10.mp3quran.net/minsh/${surahNum}.mp3`;
+
+            const audio = document.getElementById('main-audio');
+            audio.src = url;
+            audio.pause();
+            document.getElementById('play-icon').className = "fa-solid fa-play";
+            document.getElementById('audio-progress').value = 0;
+            document.getElementById('curr-time').innerText = "00:00";
+            document.getElementById('total-time').innerText = "00:00";
+        }
+
+        function togglePlay() {
+            const audio = document.getElementById('main-audio');
+            const icon = document.getElementById('play-icon');
+            if(audio.paused) {
+                audio.play().then(() => {
+                    icon.className = "fa-solid fa-pause";
+                }).catch(() => {
+                    // silent catch if prevented
+                });
+            } else {
+                audio.pause();
+                icon.className = "fa-solid fa-play";
+            }
+        }
+
+        function updateAudioProgress() {
+            const audio = document.getElementById('main-audio');
+            const progress = document.getElementById('audio-progress');
+            if(audio.duration) {
+                progress.value = (audio.currentTime / audio.duration) * 100;
+                document.getElementById('curr-time').innerText = formatTime(audio.currentTime);
+                document.getElementById('total-time').innerText = formatTime(audio.duration);
+            }
+        }
+
+        function seekAudio(val) {
+            const audio = document.getElementById('main-audio');
+            if(audio.duration) {
+                audio.currentTime = (val / 100) * audio.duration;
+            }
+        }
+
+        function skipAudio(sec) {
+            const audio = document.getElementById('main-audio');
+            audio.currentTime = Math.min(audio.duration, Math.max(0, audio.currentTime + sec));
+        }
+
+        function playNextAudioSurah() {
+            const select = document.getElementById('audio-surah-select');
+            if(select.selectedIndex < select.options.length - 1) {
+                select.selectedIndex++;
+                initAudioPlayer();
+                document.getElementById('main-audio').play();
+                document.getElementById('play-icon').className = "fa-solid fa-pause";
+            }
+        }
+
+        function formatTime(sec) {
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        // 3. Tasbih Logic
+        let tasbihCount = 0;
+        let tasbihTotal = 0;
+        let tasbihGoal = 33;
+
+        function setTasbih(phrase, goal) {
+            document.getElementById('tasbih-current-text').innerText = phrase;
+            tasbihGoal = goal;
+            tasbihCount = 0;
+            document.getElementById('tasbih-counter').innerText = tasbihCount;
+        }
+
+        function incrementTasbih() {
+            tasbihCount++;
+            tasbihTotal++;
+            document.getElementById('tasbih-counter').innerText = tasbihCount;
+            document.getElementById('tasbih-total').innerText = tasbihTotal;
+            if(navigator.vibrate) navigator.vibrate(30);
+        }
+
+        function resetTasbih() {
+            tasbihCount = 0;
+            document.getElementById('tasbih-counter').innerText = tasbihCount;
+        }
+
+        // 4. Azkar Data & Logic
+        const azkarDB = {
+            morning: [
+                {text: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ.", count: 1},
+                {text: "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ.", count: 1},
+                {text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.", count: 3}
+            ],
+            evening: [
+                {text: "أَمْسَيْنَا عَلَى فِطْرَةِ الإِسْلاَمِ، وَعَلَى كَلِمَةِ الإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللَّهُ عليه وسلم.", count: 1},
+                {text: "اللَّهُمَّ عافني في بدني، اللَّهُمَّ عافني في سمعي، اللَّهُمَّ عافني في بصري.", count: 3}
+            ],
+            sleep: [
+                {text: "بِاسْمِكَ رَبِّ وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، إِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا.", count: 1},
+                {text: "قراءة آية الكرسي والإخلاص والمعوذات.", count: 1}
+            ],
+            prajers: [
+                {text: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.", count: 1},
+                {text: "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ.", count: 1}
+            ]
+        };
+
+        function loadAzkar(cat) {
+            document.querySelectorAll('.azkar-cat').forEach(b => {
+                b.classList.remove('bg-islamic-600', 'text-white');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            const activeBtn = document.getElementById(`azkar-btn-${cat}`);
+            activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
+            activeBtn.classList.add('bg-islamic-600', 'text-white');
+
+            const container = document.getElementById('azkar-container');
+            container.innerHTML = '';
+            
+            azkarDB[cat].forEach(item => {
+                const div = document.createElement('div');
+                div.className = "bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
+                div.innerHTML = `
+                    <div class="flex-grow">
+                        <p class="font-amiri text-xl text-slate-900 leading-relaxed">${item.text}</p>
+                        <span class="text-xs font-bold text-islamic-700 bg-emerald-100 px-2.5 py-1 rounded-full mt-2 inline-block">التكرار: ${item.count}</span>
+                    </div>
+                    <button onclick="this.querySelector('.cnt').innerText = Math.max(0, parseInt(this.querySelector('.cnt').innerText) - 1)" class="px-4 py-2 bg-islamic-600 hover:bg-islamic-700 text-white rounded-xl text-sm font-bold shadow shrink-0">
+                        متبقي: <span class="cnt">${item.count}</span>
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
